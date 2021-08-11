@@ -3,7 +3,8 @@ RUN mkdir -p /app/bin
 COPY ./target/opentelemetry-app-a.jar /app/bin
 RUN wget https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v1.3.1/opentelemetry-javaagent-all.jar
 CMD java -Dotel.traces.exporter=jaeger \
-         -Dotel.exporter.jaeger.endpoint=jaeger:14250 \
+         -Dotel.metrics.exporter=none \
+         -Dotel.exporter.jaeger.endpoint=http://jaeger:14250 \
          -Dotel.service.name=OpenTelemetryAppA \
 		 -Dapplication.home=/app/bin/ \
 		 -Dapplication.name=OpenTelemetryAppA \
